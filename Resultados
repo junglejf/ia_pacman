@@ -1,11 +1,22 @@
 C:\Users\jungl\OneDrive\Documentos\trabalho-ai-pacman-master>python pacman.py -l mediumMaze -p SearchAgent
-[SearchAgent] using function depthFirstSearch
+[SearchAgent] using function depthFirstSearch (REVERSED)
 [SearchAgent] using problem type PositionSearchProblem
 Path found with total cost of 246 in 0.0 seconds
 Search nodes expanded: 269
 Pacman emerges victorious! Score: 264
 Average Score: 264.0
 Scores:        264
+Win Rate:      1/1 (1.00)
+Record:        Win
+
+C:\Users\jungl\OneDrive\Documentos\trabalho-ai-pacman-master>python pacman.py -l mediumMaze -p SearchAgent
+[SearchAgent] using function depthFirstSearch
+[SearchAgent] using problem type PositionSearchProblem
+Path found with total cost of 130 in 0.0 seconds
+Search nodes expanded: 146
+Pacman emerges victorious! Score: 380
+Average Score: 380.0
+Scores:        380
 Win Rate:      1/1 (1.00)
 Record:        Win
 
@@ -53,15 +64,6 @@ Scores:        500
 Win Rate:      1/1 (1.00)
 Record:        Win
 
-C:\Users\jungl\OneDrive\Documentos\trabalho-ai-pacman-master>python pacman.py -l mediumMaze -p SearchAgent
-[SearchAgent] using function depthFirstSearch
-[SearchAgent] using problem type PositionSearchProblem
-Path found with total cost of 130 in 0.0 seconds
-Search nodes expanded: 146
-Pacman emerges victorious! Score: 380
-Average Score: 380.0
-Scores:        380
-Win Rate:      1/1 (1.00)
-Record:        Win
+
 
 C:\Users\jungl\OneDrive\Documentos\trabalho-ai-pacman-master>
