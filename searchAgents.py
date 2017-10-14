@@ -40,7 +40,7 @@ from game import Actions
 import util
 import time
 import search
-
+import pacman
 class GoWestAgent(Agent):
     "An agent that goes West until it can't."
 
@@ -208,7 +208,7 @@ class PositionSearchProblem(search.SearchProblem):
         if state not in self._visited:
             self._visited[state] = True
             self._visitedlist.append(state)
-        successors
+
         return successors
 
     def getCostOfActions(self, actions):
@@ -361,36 +361,7 @@ def cornersHeuristic(state, problem):
     walls = problem.walls # These are the walls of the maze, as a Grid (game.py)
 
     "*** YOUR CODE HERE ***"
-    heuristic = 0
-    cornersLeft = state[1][:]
-    referencePoint = state[0]
-
-    while len(cornersLeft) > 0:
-        closestCorner = closestPoint(referencePoint, cornersLeft)
-        heuristic += euclidieanDistance(referencePoint, closestCorner)
-        referencePoint = closestCorner
-        cornersLeft.remove(closestCorner)
-
-    return heuristic
-
-
-def closestPoint(fromPoint, candidatesList):
-    if len(candidatesList) == 0:
-        return None
-
-    closestCorner = candidatesList[0]
-    closestCost = euclidieanDistance(fromPoint, closestCorner)
-    for candidate in candidatesList[1:]:
-        thisCost = euclidieanDistance(fromPoint, candidate)
-        if closestCost > thisCost:
-            closestCost = thisCost
-            closestCorner = candidate
-
-    return closestCorner
-
-
-def euclidieanDistance(pointA, pointB):
-    return abs(pointA[0] - pointB[0]) + abs(pointA[1] - pointB[1])
+    return 0 # Default to trivial solution
 
 class AStarCornersAgent(SearchAgent):
     "A SearchAgent for FoodSearchProblem using A* and your foodHeuristic"
@@ -484,11 +455,20 @@ def foodHeuristic(state, problem):
     """
     position, foodGrid = state
     "*** YOUR CODE HERE ***"
-    temComida = foodGrid.asList()
-    if len(temComida) == 0:
-        return 0
-    comida_proxima = closestPoint(position, temComida)
-    return euclidieanDistance(position, comida_proxima) + len(temComida)
+
+    ListaComida = foodGrid.asList()
+    print("posicao da comida :",ListaComida)
+    print("posicao do pacman: ",position)
+    #menor = 100000000000000000
+    menor = 0
+    for food in ListaComida:
+        atual = ((position[0] - food[0]) ** 2 + (position[1] - food[1]) ** 2) ** 0.5
+        if atual > menor:
+            menor = atual
+    if(menor != 0 ):
+        return menor
+
+    return 0
 
 class ClosestDotSearchAgent(SearchAgent):
     "Search for all food using a sequence of searches"
@@ -556,7 +536,6 @@ class AnyFoodSearchProblem(PositionSearchProblem):
 
         "*** YOUR CODE HERE ***"
         util.raiseNotDefined()
-
 
 def mazeDistance(point1, point2, gameState):
     """
